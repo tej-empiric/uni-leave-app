@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'leave_app/css/leave_status.css' %}" />
+    
+  </head>
+  <body>
+    <div class="image-div">
+    <img
+      src="{% static 'leave_app/images/uni-logo.svg' %}"
+      alt="University Logo"
+      {% comment %} width="100"
+      height="100" {% endcomment %}
+    />
+    </div>
+      
+    <div class="header">
+      {% if fullname %}
+      <h3><span class="head">{{fullname}} </span> <span><a href="{% url "logout" %}" id="logout">Log Out</a></span></h3>
+      {% endif %}
+    
+    </div>
+    <div class="apply-div">
+      <a link href="/user/" id="apply">Apply</a>
+    </div>
+    <div>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}>
+          {{ message }}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    <div class="container">
+    <table>
+              
+      <tr>
+        <th>Name</th>
+        <th>University</th>
+        <th>Program</th>
+        <th>Study Mode</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Leave Reason</th>
+        <th>Status</th>
+      </tr>
+      {% if application %} {% for app in application %}
+      <tr>
+        <td>{{app.name}}</td>
+        <td>{{app.university}}</td>
+        <td>{{app.program}}</td>
+        <td>{{app.study_mode}}</td>
+        <td>{{app.start_date}}</td>
+        <td>{{app.end_date}}</td>
+        <td>{{app.leave_reason}}</td>
+        <td>{{app.status}}</td>
+      </tr>
+      {% endfor %}    
+      {% endif %}
+    </table>
+  </div>
+    <script src="" async defer></script>
+  </body>
+</html>

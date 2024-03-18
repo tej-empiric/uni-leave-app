@@ -1,0 +1,78 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Login</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'leave_app/css/login.css' %}" />
+    {% comment %} <script src= 
+"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> 
+      </script> 
+    <script src= 
+"https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"> 
+      </script> 
+    <script src= 
+"https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"> 
+      </script>  {% endcomment %}
+
+  </head>
+  <body>
+    <div>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}>
+          {{ message }}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  <div>
+    <img src="{% static 'leave_app/images/uni-logo.svg' %}" alt="University Logo" width="200" height="100">
+  </div>
+  <div class="container">
+    <h1>Sign in</h1>
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+        <div class="row">
+          
+            <label for="email">Email</label>
+        </div>
+            <div class="row">
+            <input type="email" id="email" name="email"> <br>
+          
+          </div>
+
+        <div class="row">
+          
+            <label for="password">Password</label>
+        </div>
+            <div class="row">
+            <input type="password" id="password" name="password"> <br><br>
+          
+        </div>
+        
+        <div class="row">
+          <input type="submit" class="submit" value="Login">
+        </div>
+      
+    </form>
+    <div class="pwd">
+      <a href={% url 'password-reset' %} class='forget'>Forgot Password</a>
+    </div>
+  </div>
+  <div class="new">
+    <p><hr><span>New to App ?</span><hr>
+    </p>
+  </div>
+  <div class="register">
+    <a href="{% url "register" %}" id="register" target="_blank">Create your Account</a>
+  </div>
+    <script src="{% static 'leave_app/js/login.js' %}" async defer></script>
+  </body>
+</html>
